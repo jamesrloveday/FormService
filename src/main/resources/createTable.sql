@@ -7,6 +7,9 @@
  * Author:  James Loveday
  * Created: 26-Jun-2016
  */
+
+drop table IMAGE; 
+
 create table IMAGE
 (
 	ID INTEGER not null primary key,
