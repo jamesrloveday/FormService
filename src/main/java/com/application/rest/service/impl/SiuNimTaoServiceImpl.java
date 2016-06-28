@@ -29,7 +29,7 @@ public class SiuNimTaoServiceImpl implements SiuNimTaoService {
     @Override
     public List<Image> getAllImagesForForm(String form) {
         return jdbcTemplate
-                .queryForList("select * from IMAGE where form := form", 
+                .queryForList("select * from IMAGE where form = ?", 
                         new Object[]{form}, Image.class); 
     }
     
