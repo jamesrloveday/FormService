@@ -58,6 +58,14 @@ public class Image implements Serializable {
     public Image(Integer id) {
         this.id = id;
     }
+    
+    public Image(int id, String fileLocation, String form, String sectionName, String title) {
+        this.id = id;
+        this.fileLocation = fileLocation;
+        this.form = form;
+        this.sectionName = sectionName;
+        this.title = title;
+    }
 
     public Integer getId() {
         return id;

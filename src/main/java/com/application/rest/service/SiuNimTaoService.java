@@ -14,8 +14,21 @@ import java.util.List;
  */
 public interface SiuNimTaoService {
     
+    //------------ READ OPERATIONS ----------------//
     public List<Image> getAllImagesForForm(String form); 
+    public List<Image> getAllImagesByTitle(String title); 
+    public List<Image> getAllImagesBy(String form, String section); 
+    public List<Image> getAllImagesBy(String title, String sectionName, String form); 
     
+    //------------- CREATE OPERATIONS ----------------//
+    public void saveImage(Image image);
+    public void saveImage(String title, String sectionName, String form, String fileLocation); 
     
+    //------------- UPDATE OPERATIONS ----------------//
+    public void updateImage(Image image);
+    public void updateImage(String title, String sectionName, String form, String fileLocation); 
     
+    //------------- DELETE OPERATIONS -----------------//
+    public void deleteImage(Image image);
+      
 }
