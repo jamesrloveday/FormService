@@ -40,4 +40,34 @@
             <exec.executable>java</exec.executable>
         </properties>
     </action>
+    <action>
+            <actionName>CUSTOM-build without tests</actionName>
+            <displayName>build without tests</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </action>
+    <action>
+            <actionName>CUSTOM-build and run without tests</actionName>
+            <displayName>build and run without tests</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>spring-boot:run</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </action>
+    <action>
+            <actionName>CUSTOM-javadoc</actionName>
+            <displayName>javadoc</displayName>
+            <goals>
+                <goal>javadoc:javadoc</goal>
+            </goals>
+        </action>
 </actions>
