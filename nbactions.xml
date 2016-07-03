@@ -70,4 +70,13 @@
                 <goal>javadoc:javadoc</goal>
             </goals>
         </action>
+    <action>
+            <actionName>CUSTOM-full build and run</actionName>
+            <displayName>full build and run</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>spring-boot:run</goal>
+            </goals>
+        </action>
 </actions>
