@@ -6,6 +6,7 @@
 package com.application.rest.service.impl.siuNimTaoServices;
 
 import com.application.rest.Forms.Image;
+import com.application.rest.rowMapper.ImageRowMapper;
 import com.application.rest.service.SiuNimTaoService;
 import com.application.rest.utils.Incrementer;
 import java.util.List;
@@ -29,9 +30,8 @@ public  class SiuNimTaoServiceImpl implements SiuNimTaoService {
 
     @Override
     public List<Image> getAllImagesForForm(String form) {
-        return jdbcTemplate
-                .queryForList("select * from IMAGE where form = ?", 
-                        new Object[]{form}, Image.class); 
+        return (List<Image>) jdbcTemplate .query("select * from IMAGE where form = ?",  
+                new Object[]{form}, new ImageRowMapper()); 
     }
 
     @Override

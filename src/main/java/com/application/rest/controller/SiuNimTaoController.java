@@ -29,8 +29,7 @@ public class SiuNimTaoController {
     @RequestMapping(value = "/getAllImagesForForm", 
             method = RequestMethod.GET, 
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<Image> getAllImagesForForm(@RequestParam("form") String form) {
+    public @ResponseBody List<Image> getAllImagesForForm(@RequestParam("form") String form) {
        return  siuNimTaoService.getAllImagesForForm(form);
     }
        
