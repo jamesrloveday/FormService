@@ -52,31 +52,14 @@
             </properties>
         </action>
     <action>
-            <actionName>CUSTOM-build and run without tests</actionName>
-            <displayName>build and run without tests</displayName>
-            <goals>
-                <goal>clean</goal>
-                <goal>install</goal>
-                <goal>spring-boot:run</goal>
-            </goals>
-            <properties>
-                <skipTests>true</skipTests>
-            </properties>
-        </action>
-    <action>
             <actionName>CUSTOM-javadoc</actionName>
             <displayName>javadoc</displayName>
             <goals>
                 <goal>javadoc:javadoc</goal>
+                
+                
             </goals>
         </action>
-    <action>
-            <actionName>CUSTOM-full build and run</actionName>
-            <displayName>full build and run</displayName>
-            <goals>
-                <goal>clean</goal>
-                <goal>install</goal>
-                <goal>spring-boot:run</goal>
-            </goals>
-        </action>
+    
+    
 </actions>
