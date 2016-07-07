@@ -31,39 +31,59 @@ public class SiuNimTaoServiceImplTest {
     @Autowired
     private JdbcTemplate jdbcTemplate; 
     private SiuNimTaoService siuNimTaoService; 
+    private Image testImage; 
+    private int counter = 1; 
     
     @Before
     public void setUp() {
-        siuNimTaoService = new SiuNimTaoServiceImpl(jdbcTemplate); 
+        siuNimTaoService = new SiuNimTaoServiceImpl(jdbcTemplate);
+        testImage = new Image(counter, "C:\\Documents\\fileLocation", "siu nim tao", "test section", "test title"); 
+        siuNimTaoService.saveImage(testImage);
+        counter++; 
     }
     
     @After
     public void tearDown() {
+        jdbcTemplate.execute("delete from image where 1=1");
     }
 
-    /**
-     * Test of getAllImagesForForm method, of class SiuNimTaoServiceImpl.
-     */
     @Test
     public void canGetAllImagesForFormSiuNimTao() {
-        String form = "Siu nim tao"; 
+        String form = "siu nim tao"; 
         List<Image> imagesTest = siuNimTaoService.getAllImagesForForm(form); 
-        assertTrue("Images test list for form should not be null", imagesTest != null); 
+        assertTrue("Images test list for form should not be null", imagesTest.size() > 0); 
     }
     
     @Test
     public void canGetAllImagesForBasicStanceTitle() {
-        String title = "basic stance"; 
+        String title = "test title"; 
         List<Image> imagesTest = siuNimTaoService.getAllImagesByTitle(title); 
-        assertTrue("Images test list for title should not be null", imagesTest != null); 
+        assertTrue("Images test list for title should not be null", imagesTest.size() > 0); 
     }
     
     @Test
     public void canGetAllImagesForFormSiuNimTaoAndSectionSection1() {
-        String form = "Siu nim tao"; 
-        String section = "section 1";
+        String form = "siu nim tao"; 
+        String section = "test section";
         List<Image> imagesTest = siuNimTaoService.getAllImagesBy(form, section);
-        assertTrue("Images test list for form and section should not be null", imagesTest != null); 
+        assertTrue("Images test list for form and section should not be null", imagesTest.size() > 0); 
+    }
+    
+    /**
+     *    @Override
+    public List<Image> getAllImagesBy(String title, String sectionName, String form) {
+        return jdbcTemplate
+                .queryForList("select * from IMAGE where title = ? and lower(section_name) = ? and form = form", 
+                        new Object[]{title, sectionName.toLowerCase(), form}, Image.class); 
+    }
+     */
+    @Test
+    public void canGetAllImagesWithTitleSectionNameAndForm() {
+        final String title = "test title"; 
+        final String section = "test section"; 
+        final String form = "siu nim tao";
+        List<Image> imagesTest = siuNimTaoService.getAllImagesBy(title, section, form);
+        assertTrue("Images test list for title, section and name should be > 0", imagesTest.size() > 0); 
     }
     
 }

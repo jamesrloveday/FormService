@@ -36,29 +36,29 @@ public  class SiuNimTaoServiceImpl implements SiuNimTaoService {
 
     @Override
     public List<Image> getAllImagesByTitle(String title) {
-        return jdbcTemplate
-                .queryForList("select * from IMAGE where title = ?", new Object[]{title}, Image.class); 
+        return (List<Image>) jdbcTemplate
+                .query("select * from IMAGE where title = ?", new Object[]{title}, new ImageRowMapper()); 
     }
 
     @Override
     public List<Image> getAllImagesBy(String form, String section) {
-        return jdbcTemplate
-                .queryForList("select * from IMAGE where form = ? and section_name = ?", 
+        return (List<Image>) jdbcTemplate
+                .query("select * from IMAGE where form = ? and section_name = ?", 
                         new Object[]{form, section}, 
-                        Image.class); 
+                        new ImageRowMapper()); 
     }
 
     @Override
     public List<Image> getAllImagesBy(String title, String sectionName, String form) {
-        return jdbcTemplate
-                .queryForList("select * from IMAGE where title = ? and lower(section_name) = ? and form = form", 
-                        new Object[]{title, sectionName.toLowerCase(), form}, Image.class); 
+        return (List<Image>) jdbcTemplate
+                .query("select * from IMAGE where title = ? and section_name = ? and form = ?", 
+                        new Object[]{title, sectionName.toLowerCase(), form}, new ImageRowMapper()); 
     }
 
     @Override
     public void saveImage(Image image) {
         int id = Incrementer.getAndIncrement(jdbcTemplate.getMaxRows()); 
-        int count = jdbcTemplate.update("insert into image(id, fileLocation, form, sectionName, title) values(?, ?, ?, ?, ?)", 
+        int count = jdbcTemplate.update("insert into image(id, file_location, form, section_name, title) values(?, ?, ?, ?, ?)", 
                 new Object[]{id, image.getFileLocation(), image.getForm(), image.getSectionName(), image.getTitle()}); 
     }
 
