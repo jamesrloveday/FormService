@@ -68,15 +68,7 @@ public class SiuNimTaoServiceImplTest {
         List<Image> imagesTest = siuNimTaoService.getAllImagesBy(form, section);
         assertTrue("Images test list for form and section should not be null", imagesTest.size() > 0); 
     }
-    
-    /**
-     *    @Override
-    public List<Image> getAllImagesBy(String title, String sectionName, String form) {
-        return jdbcTemplate
-                .queryForList("select * from IMAGE where title = ? and lower(section_name) = ? and form = form", 
-                        new Object[]{title, sectionName.toLowerCase(), form}, Image.class); 
-    }
-     */
+
     @Test
     public void canGetAllImagesWithTitleSectionNameAndForm() {
         final String title = "test title"; 
